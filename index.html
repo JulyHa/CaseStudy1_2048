@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>2048</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/addons/p5.dom.min.js"></script>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+
+    <h1 id="title">2048</h1>
+    <div id="score-container">
+        <div id="score-title">SCORE</div>
+        <div id="score"></div>
+
+    </div>
+    <br>
+    <div >
+        <table>
+            <tr>
+                <th onclick="newgame()">New game</th>
+            </tr>
+            <tr>
+                <td onclick="game4()">4x4</td>
+
+            </tr>
+            <tr>
+                <td onclick="game6()">6X6</td>
+
+            </tr>
+            <tr>
+                <td onclick="game8()">8x8</td>
+
+            </tr>
+
+        </table>
+    </div>
+</div>
+<script src="js.js"></script>
+</body>
+</html>

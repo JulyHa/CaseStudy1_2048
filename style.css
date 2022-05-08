@@ -1,0 +1,59 @@
+body {
+    background-color: #faf8ef;
+    color: #776E65;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-top: 2%;
+}
+
+/* header container */
+.container {
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 2048 title */
+h1#title {
+    font-size: 40px;
+    font-weight: bold;
+    margin-left: 500px;
+    display: block;
+    float: left;
+}
+
+div#score-container {
+    position: relative;
+    float: right;
+    background-color: #776E65;
+    color: rgb(205, 192, 180);
+    height: 25px;
+    padding: 25px 30px;
+    text-align: center;
+
+}
+div#score {
+    font-weight: bold;
+    font-size: 25px;
+    color: white;
+}
+
+.instructions {
+    position: relative;
+    float: left;
+    margin-top: 100px;
+    margin-right: -100px;
+    padding-left: 10px;
+}
+a, p {
+    font-weight: bold;
+    color: rosybrown;
+    font-size: 20px;
+    text-decoration: none;
+}
+table{
+    font-size: 30px;
+    float: left;
+    margin-top: 70px;
+    margin-left: 500px;
+}
+
