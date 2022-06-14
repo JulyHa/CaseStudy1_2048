@@ -11,33 +11,36 @@
 <div class="container">
 
     <h1 id="title">2048</h1>
-    <div id="score-container">
+    <p id="content">Kết hợp các ô số và cố gắng đạt đến 2048!</p>
+    <div class="score-container">
         <div id="score-title">SCORE</div>
         <div id="score"></div>
+
+    </div>
+    <div class="newGame-container" onclick="gameRest()">
+        <div class="newGame-font" >New game</div>
 
     </div>
     <br>
     <div >
         <table>
             <tr>
-                <th onclick="gameRest()">New game</th>
-            </tr>
-            <tr>
-                <td onclick="game4()">4x4</td>
+                <td><button class="button-50" role="button" onclick="Game(4)">Play with matrix 4x4</button></td>
 
             </tr>
             <tr>
-                <td onclick="game6()">6X6</td>
+                <td><button class="button-50" role="button" onclick="Game(6)">Play with matrix 6x6</button></td>
 
             </tr>
             <tr>
-                <td onclick="game8()">8x8</td>
+                <td><button class="button-50" role="button" onclick="Game(8)">Play with matrix 8x8</button></td>
 
             </tr>
 
         </table>
     </div>
 </div>
-<script src="js.js"></script>
+<script src="game.js"></script>
+<script src="directional.js"></script>
 </body>
 </html>
