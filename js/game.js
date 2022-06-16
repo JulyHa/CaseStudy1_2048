@@ -26,7 +26,13 @@ function setup() {
 }
 
 function startGame() {
-    grid = new Array(GRID_SIZE * GRID_SIZE).fill(0);
+    grid = []
+    for (let i = 0; i < GRID_SIZE; i++) {
+        for (let j = 0; j < GRID_SIZE; j++) {
+            grid.push( new Grids(0))
+        }
+    }
+
     gameOver = false;
     gameWon = false;
     score = 0;
@@ -65,7 +71,7 @@ function notEmpty(x) {
 }
 
 function checkSlide(previousGrid) {
-    if (!(grid.every((x, i) => x === previousGrid[i]))) {
+    if (!(grid.every((x, i) => x === previousGrid[i]._point))) {
         addRandomTile();
     }
     if (checkContinue()) {
@@ -80,20 +86,20 @@ function checkContinue() {
 
     for (let i = 0; i < GRID_SIZE; i++) {
         for (let j = 0; j < GRID_SIZE; j++) {
-            currentTile = grid[i * GRID_SIZE + j];
+            currentTile = grid[i * GRID_SIZE + j]._point //[i * GRID_SIZE + j].point();
 
             if (currentTile === 0) {
                 return false;
             }
             else {
                 if (j < GRID_SIZE - 1) {
-                    right = grid[i * GRID_SIZE + j + 1];
+                    right = grid[i * GRID_SIZE + j + 1]._point;
                 }
                 else {
                     right = 0;
                 }
                 if (i < GRID_SIZE - 1) {
-                    bottom = grid[(i + 1) * GRID_SIZE + j];
+                    bottom = grid[(i + 1) * GRID_SIZE + j]._point;
                 }
                 else {
                     bottom = 0;
@@ -107,39 +113,20 @@ function checkContinue() {
     return true;
 }
 
-function combine(row, direction) {
-    switch (direction) {
-        case DOWN_ARROW:
-            row = combineDownRight(row);
-            break;
-        case RIGHT_ARROW:
-            row = combineDownRight(row);
-            break;
-        case UP_ARROW:
-            row = combineUpLeft(row);
-            break;
-        case LEFT_ARROW:
-            row = combineUpLeft(row);
-            break;
-    }
-
-    return row;
-}
-
 function addRandomTile() {
     let emptyTiles = [];
     let index;
     let newTile = [2, 4];
 
     grid.forEach(function(value, index) {
-        if (value === 0) {
+        if (value._point === 0) {
             emptyTiles.push(index);
         }
     });
 
     if (emptyTiles.length > 0) {
         index = emptyTiles[Math.floor(Math.random() * emptyTiles.length)];
-        grid[index] = newTile[Math.floor(Math.random() * newTile.length)];
+        grid[index]._point = newTile[Math.floor(Math.random() * newTile.length)];
     }
 }
 
@@ -152,11 +139,13 @@ function displayText(message, color, size, xpos, ypos) {
 }
 
 function drawGrid() {
+    console.log(grid)
     let c;
 
     for (let i = 0; i < GRID_SIZE; i++) {
         for (let j = 0; j < GRID_SIZE; j++) {
-            switch (grid[i * GRID_SIZE + j]) {
+            let k = grid[i * GRID_SIZE + j]._point
+            switch (k) {
                 case 0:
                     c = color("#CDC0B4");
                     break;
@@ -206,21 +195,21 @@ function drawGrid() {
             //draw rectangle with rounded edges for each tile
             rect(j * CELL_SIZE + j * 10 + 10, i * CELL_SIZE + i * 10 + 10, CELL_SIZE, CELL_SIZE, 5);
 
-            if (grid[i * GRID_SIZE + j] !== 0) {
+            if (grid[i * GRID_SIZE + j]._point !== 0) {
                 if(GRID_SIZE === 4){
-                    displayText(`${grid[i * GRID_SIZE + j]}`, color(119,110,101,255),
+                    displayText(`${grid[i * GRID_SIZE + j]._point}`, color(119,110,101,255),
                         40,j * CELL_SIZE + j * 10 + 10 + CELL_SIZE / 2,
                         i * CELL_SIZE + i * 10 + 25 + CELL_SIZE / 2);
                 }
                 else if(GRID_SIZE === 6){
-                    displayText(`${grid[i * GRID_SIZE + j]}`, color(119,110,101,255),
+                    displayText(`${grid[i * GRID_SIZE + j]._point}`, color(119,110,101,255),
                         30,j * CELL_SIZE + j * 10 + 10 + CELL_SIZE / 2,
-                        i * CELL_SIZE + i * 10 + 22 + CELL_SIZE / 2);
+                        i * CELL_SIZE + i * 10 + 25 + CELL_SIZE / 2);
                 }
                 else {
-                    displayText(`${grid[i * GRID_SIZE + j]}`, color(119,110,101,255),
+                    displayText(`${grid[i * GRID_SIZE + j]._point}`, color(119,110,101,255),
                         20,j * CELL_SIZE + j * 10 + 10 + CELL_SIZE / 2,
-                        i * CELL_SIZE + i * 10 + 17+ CELL_SIZE / 2);
+                        i * CELL_SIZE + i * 10 + 25 + CELL_SIZE / 2);
                 }
 
 
