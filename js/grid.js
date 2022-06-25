@@ -1,5 +1,5 @@
 class Grids {
-    constructor(point, x, y) {
+    constructor(point) {
         this._point = point;
     }
 }

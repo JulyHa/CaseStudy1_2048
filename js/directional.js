@@ -51,7 +51,7 @@ function verticalSlide(direction) {
         }
 
         for (let k = 0; k < column.length; k++) {
-            grid[k * GRID_SIZE + i] = column[k];
+            grid[k * GRID_SIZE + i] = new Grids(column[k]._point);
         }
 
         combine(column, direction);
@@ -67,7 +67,7 @@ function verticalSlide(direction) {
         }
 
         for (let k = 0; k < column.length; k++) {
-            grid[k * GRID_SIZE + i] = column[k];
+            grid[k * GRID_SIZE + i] = new Grids( column[k]._point );
         }
     }
     checkSlide(previousGrid);
@@ -114,7 +114,7 @@ function increaseScoreByOneCell(row,x,y,i,index){
         row[i]._point = x + y;
         score += row[i]._point;
         row[index]._point = 0;
-        if (row[i]._point === 2048) {
+        if (row[i]._point === scoreWin) {
             gameWon = true;
         }
     }
@@ -126,7 +126,7 @@ function combineDownRight(row) {
 
     for (let i = row.length - 1; i > 0; i--) {
         x = row[i]._point;
-        let index = i - 1;
+        index = i - 1;
         y = row[index]._point;
 
         while (y === 0 && index > 0) {
@@ -144,7 +144,7 @@ function combineUpLeft(row) {
 
     for (let i = 0; i < row.length - 1; i++) {
         x = row[i]._point;
-        let index = i + 1;
+        index = i + 1;
         y = row[index]._point;
 
         while (y === 0 && index < row.length - 1) {

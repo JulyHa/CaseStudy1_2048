@@ -14,6 +14,7 @@ let grid;
 let gameOver;
 let score;
 let gameWon;
+let scoreWin = 2048;
 
 scoreContainer = document.getElementById("score");
 
@@ -26,12 +27,8 @@ function setup() {
 }
 
 function startGame() {
-    grid = []
-    for (let i = 0; i < GRID_SIZE; i++) {
-        for (let j = 0; j < GRID_SIZE; j++) {
-            grid.push( new Grids(0))
-        }
-    }
+
+    grid = new Array(GRID_SIZE * GRID_SIZE).fill( new Grids(0))
 
     gameOver = false;
     gameWon = false;
@@ -67,11 +64,11 @@ function keyPressed() {
 }
 
 function notEmpty(x) {
-    return x > 0;
+    return x._point > 0;
 }
 
 function checkSlide(previousGrid) {
-    if (!(grid.every((x, i) => x === previousGrid[i]._point))) {
+    if (!(grid.every((x, i) => x._point === previousGrid[i]._point))) {
         addRandomTile();
     }
     if (checkContinue()) {
@@ -126,8 +123,10 @@ function addRandomTile() {
 
     if (emptyTiles.length > 0) {
         index = emptyTiles[Math.floor(Math.random() * emptyTiles.length)];
-        grid[index]._point = newTile[Math.floor(Math.random() * newTile.length)];
+        grid[index] = new Grids(newTile[Math.floor(Math.random() * newTile.length)] );
+
     }
+    console.log(index)
 }
 
 function displayText(message, color, size, xpos, ypos) {
@@ -204,12 +203,12 @@ function drawGrid() {
                 else if(GRID_SIZE === 6){
                     displayText(`${grid[i * GRID_SIZE + j]._point}`, color(119,110,101,255),
                         30,j * CELL_SIZE + j * 10 + 10 + CELL_SIZE / 2,
-                        i * CELL_SIZE + i * 10 + 25 + CELL_SIZE / 2);
+                        i * CELL_SIZE + i * 10 + 22 + CELL_SIZE / 2);
                 }
                 else {
                     displayText(`${grid[i * GRID_SIZE + j]._point}`, color(119,110,101,255),
                         20,j * CELL_SIZE + j * 10 + 10 + CELL_SIZE / 2,
-                        i * CELL_SIZE + i * 10 + 25 + CELL_SIZE / 2);
+                        i * CELL_SIZE + i * 10 + 17 + CELL_SIZE / 2);
                 }
 
 
